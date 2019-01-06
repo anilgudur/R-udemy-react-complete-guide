@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import classes from "./App.module.css";
-import Person from "./Person/Person";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+//import Person from "../components/Persons/Person/Person";
+import Persons from "../components/Persons/Persons";
+import CockPit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -58,14 +59,6 @@ class App extends Component {
   };
 
   render() {
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
-    }
-
     //   <Person
     //   name={this.state.persons[1].name}
     //   age={this.state.persons[1].age}
@@ -75,42 +68,35 @@ class App extends Component {
     //   My Hobbies: Racing
     // </Person>
     let persons = null;
-    let btnClass = null;
+
     if (this.state.showPersons) {
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <ErrorBoundary key={person.id}>
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  deletePersonClick={this.deletePersonHandler.bind(this, index)}
-                  nameChangeClick={this.nameChangedHandler.bind(
-                    this,
-                    person.id
-                  )}
-                  //key={person.id}
-                />
-              </ErrorBoundary>
-            );
-          })}
-        </div>
+        <Persons
+          persons={this.state.persons}
+          delete={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
-
-      btnClass = classes.Red;
     }
+    // this.state.persons.map((person, index) => {
+    //   return (
+    //     <Person
+    //       name={person.name}
+    //       age={person.age}
+    //       deletePersonClick={this.deletePersonHandler.bind(this, index)}
+    //       nameChangeClick={this.nameChangedHandler.bind(this, person.id)}
+    //       key={person.id}
+    //     />
+    //   );
+    // })
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(" ")}>This is really working!</p>
-        {/* <button style={style} onClick={() => this.nameHandler("Maximilian")}>
-            Change Name
-          </button> */}
-        <button className={btnClass} onClick={this.togglePersonsHandler}>
-          Toggle Persons
-        </button>
+        <CockPit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          togglePersonsClicked={this.togglePersonsHandler}
+        />
         {persons}
       </div>
     );
