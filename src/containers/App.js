@@ -50,6 +50,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <CockPit
+          title={this.props.title}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           togglePersonsClicked={this.togglePersonsHandler}
