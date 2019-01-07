@@ -4,14 +4,27 @@ import Persons from "../components/Persons/Persons";
 import CockPit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: 1, name: "Max", age: 28 },
-      { id: 2, name: "Manu", age: 29 },
-      { id: 3, name: "Stephanie", age: 26 }
-    ],
-    showPersons: false
-  };
+  constructor(props) {
+    super(props);
+    console.log("[App.js] inside constructor", props);
+
+    this.state = {
+      persons: [
+        { id: 1, name: "Max", age: 28 },
+        { id: 2, name: "Manu", age: 29 },
+        { id: 3, name: "Stephanie", age: 26 }
+      ],
+      showPersons: false
+    };
+  }
+
+  componentWillMount() {
+    console.log("[App.js] inside componentWillMount");
+  }
+
+  componentDidMount() {
+    console.log("[App.js] inside componentDidMount");
+  }
 
   nameChangedHandler = (id, event) => {
     const personIndex = this.state.persons.findIndex(p => p.id === id);
@@ -35,6 +48,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] inside render");
     let persons = null;
 
     if (this.state.showPersons) {
