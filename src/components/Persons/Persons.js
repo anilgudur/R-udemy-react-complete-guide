@@ -29,7 +29,11 @@ class Persons extends Component {
       nextProps,
       nextState
     );
-    return nextProps.persons !== this.props.persons;
+    return (
+      nextProps.persons !== this.props.persons ||
+      nextProps.delete !== this.props.delete ||
+      nextProps.changed !== this.props.changed
+    );
   }
 
   componentWillUpdate(nextProps, nextState) {
