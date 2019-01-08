@@ -5,6 +5,7 @@ class Persons extends Component {
   constructor(props) {
     super(props);
     console.log("[Persons.js] inside constructor", props);
+    this.lastPersonRef = React.createRef();
   }
 
   componentWillMount() {
@@ -13,7 +14,12 @@ class Persons extends Component {
 
   componentDidMount() {
     console.log("[Persons.js] inside componentDidMount");
+    //this.focus();
   }
+
+  // focus() {
+  //   this.lastPersonRef.current.focus();
+  // }
 
   // updating triggered from the outside by props changes
   componentWillReceiveProps(nextProps) {
@@ -59,6 +65,7 @@ class Persons extends Component {
           deletePersonClick={this.props.delete.bind(this, index)}
           nameChangeClick={this.props.changed.bind(this, person.id)}
           key={person.id}
+          ref={this.lastPersonRef}
         />
       );
     });
