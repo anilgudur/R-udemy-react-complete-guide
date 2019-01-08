@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import classes from "./App.module.css";
 import Persons from "../components/Persons/Persons";
 import CockPit from "../components/Cockpit/Cockpit";
-import WithClass from "../hoc/WithClass";
-import WithDivClass from "../hoc/withDivClass";
+// import WithClass from "../hoc/WithClass";
+// import withDivClass from "../hoc/withDivClass";
+import withDivStatefullClass from "../hoc/withDivStatefullClass";
 
 class App extends Component {
   constructor(props) {
@@ -111,4 +112,4 @@ class App extends Component {
   }
 }
 
-export default WithDivClass(App, classes.App);
+export default withDivStatefullClass(App, classes.App);
