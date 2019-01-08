@@ -54,6 +54,7 @@ class Persons extends Component {
       return (
         <Person
           name={person.name}
+          position={index}
           age={person.age}
           deletePersonClick={this.props.delete.bind(this, index)}
           nameChangeClick={this.props.changed.bind(this, person.id)}
