@@ -15,6 +15,8 @@ class Persons extends Component {
   componentDidMount() {
     console.log("[Persons.js] inside componentDidMount");
     //this.focus();
+    //this.lastPersonRef.current.focusInput();
+    this.lastPersonRef.current.focus();
   }
 
   // focus() {
