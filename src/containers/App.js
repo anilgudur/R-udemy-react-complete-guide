@@ -3,6 +3,7 @@ import classes from "./App.module.css";
 import Persons from "../components/Persons/Persons";
 import CockPit from "../components/Cockpit/Cockpit";
 import WithClass from "../hoc/WithClass";
+import WithDivClass from "../hoc/withDivClass";
 
 class App extends Component {
   constructor(props) {
@@ -86,9 +87,11 @@ class App extends Component {
         />
       );
     }
+    ///* <WithClass classes={classes.App}> */
+    // /* </WithClass> */
 
     return (
-      <WithClass classes={classes.App}>
+      <>
         <button
           onClick={() => {
             this.setState({ showPersons: true });
@@ -103,9 +106,9 @@ class App extends Component {
           togglePersonsClicked={this.togglePersonsHandler}
         />
         {persons}
-      </WithClass>
+      </>
     );
   }
 }
 
-export default App;
+export default WithDivClass(App, classes.App);
