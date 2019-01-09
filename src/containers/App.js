@@ -6,6 +6,8 @@ import CockPit from "../components/Cockpit/Cockpit";
 // import withDivClass from "../hoc/withDivClass";
 import withDivStatefullClass from "../hoc/withDivStatefullClass";
 
+export const AuthContext = React.createContext(false);
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -98,7 +100,7 @@ class App extends Component {
           persons={this.state.persons}
           delete={this.deletePersonHandler}
           changed={this.nameChangedHandler}
-          isAuthenticated={this.state.isAuthenticated}
+          //isAuthenticated={this.state.isAuthenticated}
         />
       );
     }
@@ -121,7 +123,9 @@ class App extends Component {
           togglePersonsClicked={this.togglePersonsHandler}
           loginClick={this.loginClickHandler.bind(this)}
         />
-        {persons}
+        <AuthContext.Provider value={this.state.isAuthenticated}>
+          {persons}
+        </AuthContext.Provider>
       </>
     );
   }

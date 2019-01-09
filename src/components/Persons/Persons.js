@@ -31,19 +31,19 @@ class Persons extends Component {
     );
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(
-      "[UPDATE Persons.js] inside shouldComponentUpdate",
-      nextProps,
-      nextState
-    );
-    return (
-      nextProps.persons !== this.props.persons ||
-      nextProps.delete !== this.props.delete ||
-      nextProps.changed !== this.props.changed ||
-      nextProps.isAuthenticated !== this.props.isAuthenticated
-    );
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(
+  //     "[UPDATE Persons.js] inside shouldComponentUpdate",
+  //     nextProps,
+  //     nextState
+  //   );
+  //   return (
+  //     nextProps.persons !== this.props.persons ||
+  //     nextProps.delete !== this.props.delete ||
+  //     nextProps.changed !== this.props.changed
+  //     //|| nextProps.isAuthenticated !== this.props.isAuthenticated
+  //   );
+  // }
 
   componentWillUpdate(nextProps, nextState) {
     console.log(
@@ -69,7 +69,7 @@ class Persons extends Component {
           nameChangeClick={this.props.changed.bind(this, person.id)}
           key={person.id}
           ref={this.lastPersonRef}
-          isAuthenticated={this.props.isAuthenticated}
+          //isAuthenticated={this.props.isAuthenticated}
         />
       );
     });

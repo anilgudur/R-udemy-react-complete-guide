@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./Person.module.css";
 //import WithClass from "../../../hoc/WithClass";
 import withDivStatefullClass from "../../../hoc/withDivStatefullClass";
+import { AuthContext } from "../../../containers/App";
 
 class Person extends Component {
   constructor(props) {
@@ -41,7 +42,10 @@ class Person extends Component {
     console.log("[Person.js] inside render");
     return (
       <>
-        {this.props.isAuthenticated ? <p>I'm authenticated!</p> : null}
+        <AuthContext.Consumer>
+          {//this.props.isAuthenticated ? <p>I'm authenticated!</p> : null
+          auth => (auth ? <p>I'm authenticated!</p> : null)}
+        </AuthContext.Consumer>
         <p onClick={this.props.deletePersonClick}>
           I'm a {this.props.name} and I am {this.props.age} years old!
         </p>
