@@ -5,6 +5,12 @@ import CockPit from "../components/Cockpit/Cockpit";
 // import WithClass from "../hoc/WithClass";
 // import withDivClass from "../hoc/withDivClass";
 import withDivStatefullClass from "../hoc/withDivStatefullClass";
+import DummyLogin from "../components/DummyLogin/DummyLogin";
+import DummyProfile from "../components/DummyLogin/DummyProfile";
+export const NewAuthContext = React.createContext({
+  isAuth: false,
+  toggleAuth: () => {}
+});
 
 export const AuthContext = React.createContext(false);
 
@@ -90,6 +96,14 @@ class App extends Component {
     this.setState({ isAuthenticated: true });
   };
 
+  toggleAuth = () => {
+    this.setState(prevState => {
+      return {
+        isAuthenticated: !prevState.isAuthenticated
+      };
+    });
+  };
+
   render() {
     console.log("[App.js] inside render");
     let persons = null;
@@ -109,6 +123,15 @@ class App extends Component {
 
     return (
       <>
+        <NewAuthContext.Provider
+          value={{
+            isAuth: this.state.isAuthenticated,
+            toggleAuth: this.toggleAuth
+          }}
+        >
+          <DummyLogin />
+          <DummyProfile />
+        </NewAuthContext.Provider>
         <button
           onClick={() => {
             this.setState({ showPersons: true });
