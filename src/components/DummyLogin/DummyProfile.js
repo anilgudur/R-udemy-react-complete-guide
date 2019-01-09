@@ -1,5 +1,6 @@
 import React from "react";
-import { NewAuthContext } from "../../containers/App";
+//import { NewAuthContext } from "../../containers/App";
+import NewAuthContext from "../../contexts/NewAuthContext/NewAuthContext";
 
 const dummyProfile = props => (
   <NewAuthContext.Consumer>

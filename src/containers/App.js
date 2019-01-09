@@ -7,10 +7,11 @@ import CockPit from "../components/Cockpit/Cockpit";
 import withDivStatefullClass from "../hoc/withDivStatefullClass";
 import DummyLogin from "../components/DummyLogin/DummyLogin";
 import DummyProfile from "../components/DummyLogin/DummyProfile";
-export const NewAuthContext = React.createContext({
-  isAuth: false,
-  toggleAuth: () => {}
-});
+import NewAuthContext from "../contexts/NewAuthContext/NewAuthContext";
+// export const NewAuthContext = React.createContext({
+//   isAuth: false,
+//   toggleAuth: () => {}
+// });
 
 export const AuthContext = React.createContext(false);
 
@@ -59,6 +60,19 @@ class App extends Component {
       nextProps,
       nextState
     );
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(
+      "[UPDATE App.js] inside getDerivedStateFromProps",
+      nextProps,
+      prevState
+    );
+    return prevState;
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log("[UPDATE App.js] inside getSnapshotBeforeUpdate");
   }
 
   componentDidUpdate() {
