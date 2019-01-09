@@ -18,7 +18,8 @@ class App extends Component {
         { id: 3, name: "Stephanie", age: 26 }
       ],
       showPersons: false,
-      toggleClicked: 0
+      toggleClicked: 0,
+      isAuthenticated: false
     };
   }
 
@@ -39,7 +40,8 @@ class App extends Component {
     );
     return (
       nextState.persons !== this.state.persons ||
-      nextState.showPersons !== this.state.showPersons
+      nextState.showPersons !== this.state.showPersons ||
+      nextState.isAuthenticated !== this.state.isAuthenticated
     );
   }
 
@@ -82,6 +84,10 @@ class App extends Component {
     });
   };
 
+  loginClickHandler = () => {
+    this.setState({ isAuthenticated: true });
+  };
+
   render() {
     console.log("[App.js] inside render");
     let persons = null;
@@ -92,6 +98,7 @@ class App extends Component {
           persons={this.state.persons}
           delete={this.deletePersonHandler}
           changed={this.nameChangedHandler}
+          isAuthenticated={this.state.isAuthenticated}
         />
       );
     }
@@ -112,6 +119,7 @@ class App extends Component {
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           togglePersonsClicked={this.togglePersonsHandler}
+          loginClick={this.loginClickHandler.bind(this)}
         />
         {persons}
       </>

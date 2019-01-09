@@ -29,7 +29,10 @@ class Person extends Component {
     }
   }
   focus() {
+    // console.log("props", this.props);
+    // if (this.props.position === 0) {
     this.inputElement.current.focus();
+    //}
   }
 
   // <WithClass classes={classes.Person}>
@@ -38,6 +41,7 @@ class Person extends Component {
     console.log("[Person.js] inside render");
     return (
       <>
+        {this.props.isAuthenticated ? <p>I'm authenticated!</p> : null}
         <p onClick={this.props.deletePersonClick}>
           I'm a {this.props.name} and I am {this.props.age} years old!
         </p>
